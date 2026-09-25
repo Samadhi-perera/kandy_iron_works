@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        color-scheme: dark;
+    }
+    body {
+        background-color: #080c13;
+        color: #f1f5f9;
+        font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    }
+}
+
+/* Custom Industrial Gradients and Effects */
+.bg-forge-gradient {
+    background: radial-gradient(ellipse at 80% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(239, 68, 68, 0.08) 0%, transparent 50%),
+                #080c13;
+}
+
+.glass-panel {
+    background: rgba(17, 24, 38, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-panel-amber {
+    background: rgba(26, 20, 16, 0.85);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.metal-border {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.metal-border-hover:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+}
+
+/* Subtle spark pulse */
+@keyframes sparkPulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+.sparkle-glow {
+    animation: sparkPulse 3s infinite ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #080c13;
+}
+::-webkit-scrollbar-thumb {
+    background: #233044;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #f59e0b;
+}

@@ -158,5 +158,14 @@ class KandyIronWorksTest extends TestCase
 
         $this->assertEquals('Kandy Iron Works & Steel Fabricators', Setting::get('workshop_name'));
         $this->assertEquals('+94 81 223 9999', Setting::get('phone_primary'));
+
+        // Verify that the updated phone number and workshop name are reflected on the frontend
+        $homeResponse = $this->get('/');
+        $homeResponse->assertStatus(200);
+        $homeResponse->assertSee('+94 81 223 9999');
+
+        $contactResponse = $this->get('/contact');
+        $contactResponse->assertStatus(200);
+        $contactResponse->assertSee('+94 81 223 9999');
     }
 }

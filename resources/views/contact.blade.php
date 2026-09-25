@@ -28,10 +28,10 @@
                         </div>
                     </div>
                     <p class="text-sm text-slate-200 pl-1">
-                        No. 142, William Gopallawa Mawatha, Kandy, Sri Lanka
+                        {{ $settings['address'] ?? 'No. 142, William Gopallawa Mawatha, Kandy, Sri Lanka' }}
                     </p>
                     <div class="pt-2 flex items-center gap-3">
-                        <a href="https://maps.google.com/?q=William+Gopallawa+Mawatha+Kandy" target="_blank" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-amber-400 text-xs font-bold transition-all flex items-center gap-1.5 border border-white/10">
+                        <a href="https://maps.google.com/?q={{ urlencode($settings['address'] ?? 'William Gopallawa Mawatha Kandy') }}" target="_blank" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-amber-400 text-xs font-bold transition-all flex items-center gap-1.5 border border-white/10">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in Google Maps
                         </a>
                     </div>
@@ -50,15 +50,15 @@
                     <div class="space-y-2 text-sm text-slate-200">
                         <div class="flex justify-between items-center py-1 border-b border-white/5">
                             <span class="text-slate-400 text-xs">Workshop Landline:</span>
-                            <a href="tel:+94812234567" class="font-bold text-amber-400 hover:underline">+94 81 223 4567</a>
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $settings['phone_primary'] ?? '+94812234567') }}" class="font-bold text-amber-400 hover:underline">{{ $settings['phone_primary'] ?? '+94 81 223 4567' }}</a>
                         </div>
                         <div class="flex justify-between items-center py-1 border-b border-white/5">
                             <span class="text-slate-400 text-xs">Engineer Direct Mobile:</span>
-                            <a href="tel:+94771234567" class="font-bold text-amber-400 hover:underline">+94 77 123 4567</a>
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $settings['phone_mobile'] ?? '+94771234567') }}" class="font-bold text-amber-400 hover:underline">{{ $settings['phone_mobile'] ?? '+94 77 123 4567' }}</a>
                         </div>
                         <div class="flex justify-between items-center py-1">
                             <span class="text-slate-400 text-xs">WhatsApp Business:</span>
-                            <a href="https://wa.me/94771234567" target="_blank" class="font-bold text-emerald-400 hover:underline">+94 77 123 4567</a>
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '94771234567') }}" target="_blank" class="font-bold text-emerald-400 hover:underline">{{ $settings['phone_mobile'] ?? ($settings['whatsapp_number'] ?? '+94 77 123 4567') }}</a>
                         </div>
                     </div>
                 </div>
@@ -74,17 +74,9 @@
                         </div>
                     </div>
                     <div class="space-y-1.5 text-xs text-slate-300">
-                        <div class="flex justify-between py-1 border-b border-white/5">
-                            <span>Monday – Friday:</span>
-                            <strong class="text-white">8:00 AM – 6:30 PM</strong>
-                        </div>
-                        <div class="flex justify-between py-1 border-b border-white/5">
-                            <span>Saturday:</span>
-                            <strong class="text-white">8:00 AM – 5:00 PM</strong>
-                        </div>
-                        <div class="flex justify-between py-1 text-amber-400">
-                            <span>Sunday:</span>
-                            <span>On-Site Consultations by Appointment</span>
+                        <div class="py-1">
+                            <span class="text-slate-400 block mb-1">Standard Workshop Schedule:</span>
+                            <strong class="text-white block">{{ $settings['working_hours'] ?? 'Mon – Sat: 8:00 AM – 6:30 PM (Sun: By Appointment)' }}</strong>
                         </div>
                     </div>
                 </div>

@@ -61,7 +61,7 @@
                                 <span class="text-[10px] text-slate-400 block">Base Price</span>
                                 <strong class="text-xs font-bold text-amber-400">LKR {{ number_format($item->base_price_lkr) }} / {{ $item->price_unit }}</strong>
                             </div>
-                            <a href="https://wa.me/94771234567?text=Hello%20Kandy%20Iron%20Works,%20I%20would%20like%20to%20order%20Design%20Code:%20{{ $item->code }}%20({{ urlencode($item->title) }})." target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold transition-colors flex items-center gap-1">
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '94771234567') }}?text=Hello%20{{ urlencode($settings['workshop_name'] ?? 'Kandy Iron Works') }},%20I%20would%20like%20to%20order%20Design%20Code:%20{{ $item->code }}%20({{ urlencode($item->title) }})." target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold transition-colors flex items-center gap-1">
                                 <i class="fa-brands fa-whatsapp text-sm"></i> Order
                             </a>
                         </div>

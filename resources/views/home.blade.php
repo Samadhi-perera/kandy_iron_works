@@ -105,7 +105,7 @@
                     <span>View Projects</span>
                 </a>
 
-                <a href="https://wa.me/94771234567?text=Hello%20Kandy%20Iron%20Works,%20I%20would%20like%20to%20request%20a%20site%20inspection." target="_blank" class="px-5 py-3.5 rounded-xl font-semibold text-sm text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 transition-all flex items-center gap-2">
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '94771234567') }}?text=Hello%20{{ urlencode($settings['workshop_name'] ?? 'Kandy Iron Works') }},%20I%20would%20like%20to%20request%20a%20site%20inspection." target="_blank" class="px-5 py-3.5 rounded-xl font-semibold text-sm text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 transition-all flex items-center gap-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                     <span>WhatsApp Master</span>
                 </a>
@@ -114,15 +114,15 @@
             <!-- Trust Highlights Grid -->
             <div class="pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
                 <div class="space-y-0.5">
-                    <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">16+</div>
+                    <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">{{ $settings['experience_years'] ?? '16+' }}</div>
                     <div class="text-xs text-slate-400 font-medium">Years Experience</div>
                 </div>
                 <div class="space-y-0.5">
-                    <div class="text-2xl sm:text-3xl font-extrabold text-white">1,450+</div>
+                    <div class="text-2xl sm:text-3xl font-extrabold text-white">{{ $settings['projects_completed'] ?? '1,450+' }}</div>
                     <div class="text-xs text-slate-400 font-medium">Projects Built</div>
                 </div>
                 <div class="space-y-0.5">
-                    <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">10-Year</div>
+                    <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">{{ $settings['warranty_years'] ?? '10-Year Rust Guarantee' }}</div>
                     <div class="text-xs text-slate-400 font-medium">Rust Guarantee</div>
                 </div>
                 <div class="space-y-0.5">
@@ -661,7 +661,7 @@
                                 <span class="text-[10px] text-slate-400 block">Base Rate</span>
                                 <strong class="text-xs font-bold text-amber-400">LKR {{ number_format($item->base_price_lkr) }} / {{ $item->price_unit }}</strong>
                             </div>
-                            <a href="https://wa.me/94771234567?text=Hello%20Kandy%20Iron%20Works,%20I%20am%20interested%20in%20design%20code%20{{ $item->code }}%20({{ urlencode($item->title) }})." target="_blank" class="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-emerald-600 text-slate-300 hover:text-white text-[11px] font-semibold transition-colors flex items-center gap-1">
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '94771234567') }}?text=Hello%20{{ urlencode($settings['workshop_name'] ?? 'Kandy Iron Works') }},%20I%20am%20interested%20in%20design%20code%20{{ $item->code }}%20({{ urlencode($item->title) }})." target="_blank" class="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-emerald-600 text-slate-300 hover:text-white text-[11px] font-semibold transition-colors flex items-center gap-1">
                                 <i class="fa-brands fa-whatsapp text-xs"></i> Order
                             </a>
                         </div>
@@ -801,7 +801,7 @@
                         </div>
                         <div>
                             <strong class="text-white block text-sm mb-0.5">Workshop &amp; Fabrication Yard</strong>
-                            <span class="text-slate-400">No. 142, William Gopallawa Mawatha, Kandy, Sri Lanka</span>
+                            <span class="text-slate-400">{{ $settings['address'] ?? 'No. 142, William Gopallawa Mawatha, Kandy, Sri Lanka' }}</span>
                         </div>
                     </div>
 
@@ -812,9 +812,9 @@
                         <div>
                             <strong class="text-white block text-sm mb-0.5">Phone &amp; Hotline</strong>
                             <div class="space-x-3 text-slate-300">
-                                <a href="tel:+94812234567" class="hover:text-amber-400">+94 81 223 4567</a>
+                                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $settings['phone_primary'] ?? '+94812234567') }}" class="hover:text-amber-400">{{ $settings['phone_primary'] ?? '+94 81 223 4567' }}</a>
                                 <span class="text-white/20">|</span>
-                                <a href="tel:+94771234567" class="hover:text-amber-400">+94 77 123 4567</a>
+                                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $settings['phone_mobile'] ?? '+94771234567') }}" class="hover:text-amber-400">{{ $settings['phone_mobile'] ?? '+94 77 123 4567' }}</a>
                             </div>
                         </div>
                     </div>
@@ -825,8 +825,8 @@
                         </div>
                         <div>
                             <strong class="text-white block text-sm mb-0.5">Direct WhatsApp Support</strong>
-                            <a href="https://wa.me/94771234567?text=Hi%20Kandy%20Iron%20Works!%20I%20am%20contacting%20you%20from%20your%20website." target="_blank" class="text-emerald-400 hover:underline">
-                                +94 77 123 4567 (Instant Replies)
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '94771234567') }}?text=Hi%20{{ urlencode($settings['workshop_name'] ?? 'Kandy Iron Works') }}!%20I%20am%20contacting%20you%20from%20your%20website." target="_blank" class="text-emerald-400 hover:underline">
+                                {{ $settings['phone_mobile'] ?? ($settings['whatsapp_number'] ?? '+94 77 123 4567') }} (Instant Replies)
                             </a>
                         </div>
                     </div>
@@ -837,7 +837,7 @@
                         </div>
                         <div>
                             <strong class="text-white block text-sm mb-0.5">Operating Hours</strong>
-                            <span class="text-slate-400">Monday – Saturday: 8:00 AM – 6:30 PM (Sunday by appointment)</span>
+                            <span class="text-slate-400">{{ $settings['working_hours'] ?? 'Monday – Saturday: 8:00 AM – 6:30 PM (Sunday by appointment)' }}</span>
                         </div>
                     </div>
                 </div>

@@ -40,7 +40,20 @@ class AdminProjectController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . Str::slug($request->title) . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/projects'), $filename);
+            $destPublic = public_path('uploads/projects');
+            if (!is_dir($destPublic)) {
+                @mkdir($destPublic, 0755, true);
+            }
+            $file->move($destPublic, $filename);
+
+            $destBase = base_path('uploads/projects');
+            if (realpath($destBase) !== realpath($destPublic)) {
+                if (!is_dir($destBase)) {
+                    @mkdir($destBase, 0755, true);
+                }
+                @copy($destPublic . DIRECTORY_SEPARATOR . $filename, $destBase . DIRECTORY_SEPARATOR . $filename);
+            }
+
             $imageUrl = '/uploads/projects/' . $filename;
         }
 
@@ -92,7 +105,20 @@ class AdminProjectController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . Str::slug($request->title) . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/projects'), $filename);
+            $destPublic = public_path('uploads/projects');
+            if (!is_dir($destPublic)) {
+                @mkdir($destPublic, 0755, true);
+            }
+            $file->move($destPublic, $filename);
+
+            $destBase = base_path('uploads/projects');
+            if (realpath($destBase) !== realpath($destPublic)) {
+                if (!is_dir($destBase)) {
+                    @mkdir($destBase, 0755, true);
+                }
+                @copy($destPublic . DIRECTORY_SEPARATOR . $filename, $destBase . DIRECTORY_SEPARATOR . $filename);
+            }
+
             $imageUrl = '/uploads/projects/' . $filename;
         } elseif (!empty($validated['image_url'])) {
             $imageUrl = $validated['image_url'];

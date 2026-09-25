@@ -41,20 +41,20 @@
                 </span>
                 <span class="hidden md:inline-flex items-center gap-1 text-slate-400">
                     <i class="fa-solid fa-location-dot text-amber-500"></i>
-                    No. 142, William Gopallawa Mw, Kandy
+                    {{ $settings['address'] ?? 'No. 142, William Gopallawa Mw, Kandy' }}
                 </span>
                 <span class="hidden lg:inline-flex items-center gap-1 text-slate-400">
                     <i class="fa-solid fa-clock text-amber-500"></i>
-                    Mon-Sat: 8:00 AM – 6:30 PM
+                    {{ $settings['working_hours'] ?? 'Mon-Sat: 8:00 AM – 6:30 PM' }}
                 </span>
             </div>
             <div class="flex items-center gap-4">
-                <a href="tel:+94812234567" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $settings['phone_primary'] ?? '+94812234567') }}" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
                     <i class="fa-solid fa-phone text-amber-500"></i>
-                    <span>+94 81 223 4567</span>
+                    <span>{{ $settings['phone_primary'] ?? '+94 81 223 4567' }}</span>
                 </a>
                 <span class="text-white/20">|</span>
-                <a href="https://wa.me/94771234567?text=Hello%20Kandy%20Iron%20Works,%20I%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" class="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold">
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '94771234567') }}?text=Hello%20{{ urlencode($settings['workshop_name'] ?? 'Kandy Iron Works') }},%20I%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" class="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span>WhatsApp</span>
                 </a>
@@ -144,10 +144,10 @@
             <a href="{{ route('contact') }}" @click="mobileOpen = false" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-white/5 hover:text-amber-400">Contact & Workshop Map</a>
 
             <div class="pt-3 border-t border-white/10 flex flex-col gap-2">
-                <a href="tel:+94812234567" class="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-white/5 text-sm font-semibold text-white">
-                    <i class="fa-solid fa-phone text-amber-400"></i> Call +94 81 223 4567
+                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $settings['phone_primary'] ?? '+94812234567') }}" class="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-white/5 text-sm font-semibold text-white">
+                    <i class="fa-solid fa-phone text-amber-400"></i> Call {{ $settings['phone_primary'] ?? '+94 81 223 4567' }}
                 </a>
-                <a href="https://wa.me/94771234567" target="_blank" class="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-emerald-600 text-sm font-semibold text-white">
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '94771234567') }}" target="_blank" class="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-emerald-600 text-sm font-semibold text-white">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Direct WhatsApp
                 </a>
             </div>
@@ -190,7 +190,7 @@
 
     <!-- Floating WhatsApp Quick Button -->
     <div class="fixed bottom-6 right-6 z-40">
-        <a href="https://wa.me/94771234567?text=Hi%20Kandy%20Iron%20Works!%20I%20would%20like%20a%20quotation%20for%20my%20iron%20work%20project." target="_blank"
+        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '94771234567') }}?text=Hi%20{{ urlencode($settings['workshop_name'] ?? 'Kandy Iron Works') }}!%20I%20would%20like%20a%20quotation%20for%20my%20iron%20work%20project." target="_blank"
            class="group relative flex items-center justify-center w-14 h-14 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full shadow-2xl shadow-emerald-500/40 hover:scale-110 transition-all duration-300 focus:outline-none"
            title="Chat on WhatsApp">
             <i class="fa-brands fa-whatsapp text-3xl"></i>
@@ -217,11 +217,11 @@
                         <span class="text-xl font-extrabold text-white tracking-tight uppercase">Kandy <span class="text-amber-500">Iron Works</span></span>
                     </div>
                     <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
-                        Premier metal fabricator and architectural wrought iron smiths serving Kandy, Matale, Kurunegala, Nuwara Eliya, and all of Sri Lanka since 2008. Heavy-duty engineering meets timeless artistry.
+                        {{ $settings['about_snippet'] ?? 'Premier metal fabricator and architectural wrought iron smiths serving Kandy, Matale, Kurunegala, Nuwara Eliya, and all of Sri Lanka since 2008. Heavy-duty engineering meets timeless artistry.' }}
                     </p>
                     <div class="flex items-center gap-3 pt-2">
                         <span class="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] font-semibold text-amber-400">
-                            <i class="fa-solid fa-shield-halved mr-1"></i> 10-Year Rust Guarantee
+                            <i class="fa-solid fa-shield-halved mr-1"></i> {{ $settings['warranty_years'] ?? '10-Year Rust Guarantee' }}
                         </span>
                         <span class="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] font-semibold text-slate-300">
                             <i class="fa-solid fa-certificate mr-1"></i> Certified Welders
@@ -230,8 +230,8 @@
                     <div class="flex items-center gap-3 pt-2 text-slate-400">
                         <a href="#" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-xs"></i></a>
                         <a href="#" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram text-xs"></i></a>
-                        <a href="https://wa.me/94771234567" target="_blank" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-emerald-500 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-whatsapp text-xs"></i></a>
-                        <a href="tel:+94812234567" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-colors"><i class="fa-solid fa-phone text-xs"></i></a>
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '94771234567') }}" target="_blank" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-emerald-500 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-whatsapp text-xs"></i></a>
+                        <a href="tel:{{ preg_replace('/[^0-9+]/', '', $settings['phone_primary'] ?? '+94812234567') }}" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-colors"><i class="fa-solid fa-phone text-xs"></i></a>
                     </div>
                 </div>
 
@@ -253,8 +253,8 @@
                     <h5 class="text-white font-bold text-xs uppercase tracking-wider">Metalwork Services</h5>
                     <ul class="space-y-2 text-xs">
                         <li><a href="{{ route('portfolio', ['category' => 'gates']) }}" class="hover:text-amber-400 transition-colors">Automated Driveway Gates</a></li>
-                        <li><a href="{{ route('portfolio', ['category' => 'railings']) }}" class="hover:text-amber-400 transition-colors">Spiral Stairs & Balustrades</a></li>
-                        <li><a href="{{ route('portfolio', ['category' => 'roofing']) }}" class="hover:text-amber-400 transition-colors">Cantilever Canopies & Roofs</a></li>
+                        <li><a href="{{ route('portfolio', ['category' => 'railings']) }}" class="hover:text-amber-400 transition-colors">Spiral Stairs &amp; Balustrades</a></li>
+                        <li><a href="{{ route('portfolio', ['category' => 'roofing']) }}" class="hover:text-amber-400 transition-colors">Cantilever Canopies &amp; Roofs</a></li>
                         <li><a href="{{ route('portfolio', ['category' => 'laser_cut']) }}" class="hover:text-amber-400 transition-colors">CNC Laser-Cut Privacy Panels</a></li>
                         <li><a href="{{ route('portfolio', ['category' => 'structural']) }}" class="hover:text-amber-400 transition-colors">Industrial Steel Warehouses</a></li>
                         <li><a href="{{ route('portfolio', ['category' => 'custom']) }}" class="hover:text-amber-400 transition-colors">Burglar-Proof Window Grills</a></li>
@@ -267,23 +267,23 @@
                     <ul class="space-y-2.5 text-xs">
                         <li class="flex items-start gap-2">
                             <i class="fa-solid fa-location-dot text-amber-500 mt-1"></i>
-                            <span>No. 142, William Gopallawa Mawatha, Kandy, Sri Lanka</span>
+                            <span>{{ $settings['address'] ?? 'No. 142, William Gopallawa Mawatha, Kandy, Sri Lanka' }}</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <i class="fa-solid fa-phone text-amber-500"></i>
-                            <a href="tel:+94812234567" class="hover:text-white">+94 81 223 4567</a>
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $settings['phone_primary'] ?? '+94812234567') }}" class="hover:text-white">{{ $settings['phone_primary'] ?? '+94 81 223 4567' }}</a>
                         </li>
                         <li class="flex items-center gap-2">
                             <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-                            <a href="https://wa.me/94771234567" target="_blank" class="hover:text-white">+94 77 123 4567</a>
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '94771234567') }}" target="_blank" class="hover:text-white">{{ $settings['phone_mobile'] ?? ($settings['whatsapp_number'] ?? '+94 77 123 4567') }}</a>
                         </li>
                         <li class="flex items-center gap-2">
                             <i class="fa-solid fa-envelope text-amber-500"></i>
-                            <a href="mailto:info@kandyironworks.com" class="hover:text-white">info@kandyironworks.com</a>
+                            <a href="mailto:{{ $settings['email'] ?? 'info@kandyironworks.com' }}" class="hover:text-white">{{ $settings['email'] ?? 'info@kandyironworks.com' }}</a>
                         </li>
                         <li class="flex items-center gap-2 text-slate-400">
                             <i class="fa-solid fa-clock text-amber-500"></i>
-                            <span>Mon-Sat: 8:00 AM – 6:30 PM</span>
+                            <span>{{ $settings['working_hours'] ?? 'Mon-Sat: 8:00 AM – 6:30 PM' }}</span>
                         </li>
                     </ul>
                 </div>
@@ -291,7 +291,7 @@
 
             <!-- Bottom Subfooter -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; {{ date('Y') }} Kandy Iron Works. All rights reserved. Registered Metal Fabricator in Central Province, Sri Lanka.</p>
+                <p>&copy; {{ date('Y') }} {{ $settings['workshop_name'] ?? 'Kandy Iron Works' }}. All rights reserved. Registered Metal Fabricator in Central Province, Sri Lanka.</p>
                 <div class="flex items-center gap-6">
                     <span>Privacy Policy</span>
                     <span>Terms of Fabrication</span>
